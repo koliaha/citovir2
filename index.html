@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ad.size" content="width=300, height=600">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="assets/jquery.min.js"></script>
+  <script src="assets/jquery-ui.min.js"></script>
+  <script src="assets/jquery.ui.touch-punch.min.js"></script>
+  <script src="assets/animate.min.css"></script> 
+  <link rel="stylesheet" href="assets/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <title>Citovir</title>
+    <script>
+   
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        function myclick() {
+          var clickTag = getUrlParameter("url");
+          document.location=clickTag;
+        }
+    </script>
+    <style>
+        #canvas { cursor: pointer; width: 300px; height: 600px; z-index: -10;}
+    
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="600" style="position: absolute; left: 0; top: 0; display: block; background-color:rgba(255, 255, 255, 0.00);"></canvas>
+
+    <div class="container">
+        <div class="top_logo_container">
+            <img src="assets/top_logo.png" alt="citovir logo" class="top_logo">
+        </div>
+        <div class="main">
+            <div class="top_text first  ">Как защищать малыша от вирусов?</div>
+            <div class="top_text second animate__animated inv"> <b> Сироп Цитовир-3</b> <br>
+                <p> проверенный временем помощник мам</p>
+            </div>
+            <div class="top_text inv third animate__animated ">Мамы знают, <br> что Цитовир-3 помогает</div>
+           <a class="inv btn_link" href="https://cytovir-deti.ru/?utm_campaign=vital&utm_medium=cpc&utm_source=Google&gclid=Cj0KCQjwjo2JBhCRARIsAFG667XHLFSI0PdG6GkUAtL3NohY3JLwh9V883HIvrZ_ZmaLOx_e-bEwL7EaAu0uEALw_wcB"> 
+            <div class="btn">Подробнее</div></a>
+            <div class="citovir_container animate__animated">
+                <img src="assets/Frame_0.png" alt="frame" class=" inv frame0">
+                <img src="assets/Frame.png" alt="frame" class="  frame1">
+            </div>
+            <img src="assets/barrier.png" alt="barrier" class="barrier inv animate__animated">
+        </div>
+        <img src="assets/citovir.png" alt="product citovir" class=" piece0 animate__animated citovir">
+        <img src="assets/viruses.png" alt="viruses" class="inv viruses animate__animated ">
+        <div class="viruses_container">
+            <img src="assets/v_left.png" alt="virus" class="animate__animated animate__pulse animate__infinite	infinite  animate__fast v_top_left ">
+            <img src="assets/v_top_right.png" alt="virus" class="animate__animated animate__pulse animate__infinite	infinite animate__faster v_top_right">
+            <img src="assets/v_right.png" alt="virus" class="animate__animated animate__pulse  animate__infinite	infinite  animate__fast v_bot_right">
+            <img src="assets/v_bot_left.png" alt="virus" class="animate__animated  animate__pulse animate__infinite	infinite  animate__faster v_bot_left">
+        </div>
+    </div>
+    <script>
+   var piece0 = document.getElementsByClassName("piece0")[0];
+   let place0 = false;
+   piece0.onmousedown = function(event) {
+            // calculate shift of drag point
+            let shiftX = event.clientX - piece0.getBoundingClientRect().left;
+            let shiftY = event.clientY - piece0.getBoundingClientRect().top;
+
+            // prepare to drag object
+            piece0.style.zIndex = 1000;
+
+            // set object under cursor
+            moveAt(event.pageX, event.pageY);
+
+            // move object on half width and half height for centering
+            function moveAt(pageX, pageY) {
+                piece0.style.left = pageX - shiftX + "px";
+                piece0.style.top = pageY - shiftY + "px";
+            }
+
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+                if ( $(piece0).position().left < 90 
+                && $(piece0).position().left > 50
+                 && $(piece0).position().top < 390 
+                 && $(piece0).position().top >270 ) {
+                    piece0.style.top = 395 + "px";
+                    piece0.style.left = 86 + "px";
+                    piece0.style.width = 18 + "%";
+                    piece0.style.height = 17 + "%";
+                    $('.citovir_container').toggleClass('inv');
+                    $('.citovir_container').toggleClass('animte__fadeOut');
+                    $('.barrier').toggleClass('animate__pulse animate__infinite infinite animate__slow');
+                    $('.barrier').toggleClass('inv');
+                    $('.first').toggleClass('inv');
+                    $('.second').toggleClass('animate__fadeIn');
+                    $('.second').toggleClass('inv');
+                    $('.v_top_right').toggleClass('animate__backOutUp animate__slow animate__infinite');
+                    $('.v_top_left').toggleClass('animate__backOutUp animate__slow animate__infinite');
+                    $('.v_bot_left').toggleClass('animate__backOutLeft animate__slow animate__infinite');
+                    $('.v_bot_right').toggleClass('animate__backOutRight animate__slow animate__infinite');
+                    setTimeout(
+                        function() 
+                        {
+                            //do something special
+                            $('.main').toggleClass('main_last');
+                            // $('.main').css("background", "url(assets/3.png) no-repeat bottom/90%");
+                            $('.second').toggleClass('animate__fadeOut ');
+                            $('.second').toggleClass('inv ');
+                            $('.third').toggleClass('inv');
+                            $('.third').toggleClass('animate__fadeIn ');
+                            $('.btn_link').toggleClass('inv');
+                            $('.btn_link').toggleClass('animate__fadeIn animate__delay-1s');
+                            $('.barrier').toggleClass('inv');
+                            $('.citovir').toggleClass('inv');
+                            $('.container').click(function() {
+                                $('.container a')[0].click();
+                            }
+                            );
+                        }, 4000);
+
+
+
+
+
+                    place0 = true;
+                    document.removeEventListener("mousemove", onMouseMove);
+                    console.log (place0);
+            }
+            }
+
+            // drag on the screen by mouse
+            document.addEventListener("mousemove", onMouseMove);
+            // drop object and remove event listeners
+            piece0.onmouseup = function() {
+                // checkPlaces(); 
+
+                document.removeEventListener("mousemove", onMouseMove);
+                piece0.onmouseup = null;
+            }
+            console.log($(piece0).position());
+
+        }
+
+        // remove default browser's drag listener
+        piece0.ondragstart = function() {
+            return false;
+        };
+
+    </script>
+        <script>$('.piece0').draggable();</script>
+        
+</body>
+</html>
